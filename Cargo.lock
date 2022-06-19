@@ -5623,6 +5623,7 @@ dependencies = [
 name = "pallet-inv4"
 version = "0.1.0-dev"
 dependencies = [
+ "frame-benchmarking",
  "frame-support",
  "frame-system",
  "invarch-primitives",
@@ -5649,6 +5650,7 @@ dependencies = [
 name = "pallet-ipf"
 version = "0.1.0-dev"
 dependencies = [
+ "frame-benchmarking",
  "frame-support",
  "frame-system",
  "invarch-primitives",
