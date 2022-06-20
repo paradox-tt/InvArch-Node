@@ -749,7 +749,7 @@ impl orml_xcm::Config for Runtime {
 
 parameter_types! {
     pub const MinVestedTransfer: Balance = UNIT * 100;
-    pub const MaxVestingSchedules: u32 = 2u32;
+    pub const MaxVestingSchedule: u32 = 2u32;
 }
 
 #[cfg(feature = "tinker")]
@@ -809,7 +809,7 @@ impl orml_vesting::Config for Runtime {
     type MinVestedTransfer = MinVestedTransfer;
     type VestedTransferOrigin = EnsureInvarchAccount;
     type WeightInfo = ();
-    type MaxVestingSchedules = MaxVestingSchedules;
+    type MaxVestingSchedule = MaxVestingSchedule;
     type BlockNumberProvider = System;
 }
 
