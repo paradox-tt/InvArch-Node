@@ -51,7 +51,8 @@ use frame_system::{
     limits::{BlockLength, BlockWeights},
     EnsureRoot, EnsureSigned,
 };
-use pallet_transaction_payment::{Multiplier, TargetedFeeAdjustment};
+use pallet_transaction_payment::Multiplier;
+use polkadot_runtime_common::SlowAdjustingFeeUpdate;
 use scale_info::TypeInfo;
 use smallvec::smallvec;
 use sp_api::impl_runtime_apis;
@@ -452,13 +453,28 @@ impl OnUnbalanced<NegativeImbalance> for DealWithFees {
     }
 }
 
-pub type WeightToFee = ConstantMultiplier<Balance, WeightToFeeScalar>;
+//pub type WeightToFee = ConstantMultiplier<Balance, WeightToFeeScalar>;
+
+pub struct WeightToFee;
+impl WeightToFeePolynomial for WeightToFee {
+    type Balance = Balance;
+    fn polynomial() -> WeightToFeeCoefficients<Self::Balance> {
+        let p = UNIT / 500;
+        let q = Balance::from(ExtrinsicBaseWeight::get());
+        smallvec![WeightToFeeCoefficient {
+            degree: 1,
+            negative: false,
+            coeff_frac: Perbill::from_rational(p % q, q),
+            coeff_integer: p / q,
+        }]
+    }
+}
 
 impl pallet_transaction_payment::Config for Runtime {
     type OnChargeTransaction = pallet_transaction_payment::CurrencyAdapter<Balances, DealWithFees>;
     type WeightToFee = WeightToFee;
     type LengthToFee = ConstantMultiplier<Balance, TransactionByteFee>;
-    type FeeMultiplierUpdate = ();
+    type FeeMultiplierUpdate = SlowAdjustingFeeUpdate<Self>;
     type OperationalFeeMultiplier = OperationalFeeMultiplier;
 }
 
@@ -749,7 +765,7 @@ impl orml_xcm::Config for Runtime {
 
 parameter_types! {
     pub const MinVestedTransfer: Balance = UNIT * 100;
-    pub const MaxVestingSchedule: u32 = 2u32;
+    pub const MaxVestingSchedules: u32 = 2u32;
 }
 
 #[cfg(feature = "tinker")]
@@ -809,7 +825,7 @@ impl orml_vesting::Config for Runtime {
     type MinVestedTransfer = MinVestedTransfer;
     type VestedTransferOrigin = EnsureInvarchAccount;
     type WeightInfo = ();
-    type MaxVestingSchedule = MaxVestingSchedule;
+    type MaxVestingSchedules = MaxVestingSchedules;
     type BlockNumberProvider = System;
 }
 
