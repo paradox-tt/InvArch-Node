@@ -125,4 +125,4 @@ run-solo-bob:
 run-solo: ; printf "run-solo-alice\nrun-solo-bob" | parallel -u make
 
 run-benchmark-ipf:
-	cargo run --features=runtime-benchmarks -- benchmark --chain=solo-dev --execution=wasm --wasm-execution=compiled '--pallet=pallet-ipf' '--extrinsic=*' --steps=20 --repeat=10 --json-file=./weights/ipf/ipf.json --output=../InvArch-Frames/INV4/pallet-ipf/src/weights.rs
+	cargo run --release --features=runtime-benchmarks -- benchmark --chain=solo-dev --execution=wasm --wasm-execution=compiled --pallet=pallet_ipf --extrinsic='*' --steps=20 --repeat=10 --json-file=./weights/ipf/ipf.json --output=../InvArch-Frames/INV4/pallet-ipf/src/weights.rs
