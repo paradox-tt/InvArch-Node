@@ -1031,6 +1031,7 @@ impl_runtime_apis! {
             let mut list = Vec::<BenchmarkList>::new();
 
             frame_list_benchmark!(list, extra, pallet_ipf, Ipf);
+            frame_list_benchmark!(list, extra, pallet_inv4, INV4);
 
             list_benchmarks!(list, extra);
 
@@ -1067,6 +1068,7 @@ impl_runtime_apis! {
             let params = (&config, &whitelist);
 
             add_benchmark!(params, batches, pallet_ipf, Ipf);
+            add_benchmark!(params, batches, pallet_inv4, INV4);
 
             add_benchmarks!(params, batches);
 

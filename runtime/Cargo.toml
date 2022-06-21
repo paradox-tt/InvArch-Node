@@ -203,6 +203,7 @@ runtime-benchmarks = [
     "frame-system/runtime-benchmarks",
 
     "pallet-ipf/runtime-benchmarks",
+    "pallet-inv4/runtime-benchmarks",
     
     "pallet-balances/runtime-benchmarks",
     "pallet-collator-selection/runtime-benchmarks",

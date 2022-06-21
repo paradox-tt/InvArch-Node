@@ -135,3 +135,15 @@ run-benchmark-ipf:
 		--repeat=20 \
 		--json-file=./weights/ipf/ipf.json \
 		--output=../InvArch-Frames/INV4/pallet-ipf/src/weights.rs
+
+run-benchmark-inv4:
+	./target/release/invarch-collator benchmark pallet \
+		--chain=solo-dev \
+		--execution=wasm \
+		--wasm-execution=compiled \
+		--pallet=pallet-inv4 \
+		--extrinsic='create_ips' \
+		--steps=50 \
+		--repeat=20 \
+		--json-file=./weights/inv4/inv4.json \
+		--output=../InvArch-Frames/INV4/pallet-ipf/src/weights.rs
