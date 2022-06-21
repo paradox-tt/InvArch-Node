@@ -129,7 +129,7 @@ run-benchmark-ipf:
 		--chain=solo-dev \
 		--execution=wasm \
 		--wasm-execution=compiled \
-		--pallet=pallet_ipf \
+		--pallet=pallet-ipf \
 		--extrinsic='*' \
 		--steps=50 \
 		--repeat=20 \
