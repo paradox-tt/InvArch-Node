@@ -80,6 +80,8 @@ pub use pallet_inv4 as inv4;
 
 use inv4::ipl::LicenseList;
 
+pub use pallet_ip_staking as ip_staking;
+
 // Weights
 mod weights;
 
@@ -1085,6 +1087,19 @@ impl pallet_preimage::Config for Runtime {
     type ByteDeposit = PreimageByteDeposit;
 }
 
+parameter_types! {
+    pub const IpsRegisterDeposit: Balance = 1000;
+    pub const OcifIpStakingPalletId: PalletId = PalletId(*b"ia/ipstk");
+}
+
+impl ip_staking::Config for Runtime {
+    type Event = Event;
+    type IpsId = CommonId;
+    type Currency = Balances;
+    type PalletId = OcifIpStakingPalletId;
+    type IpsRegisterDeposit = IpsRegisterDeposit;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
     pub enum Runtime where
@@ -1129,6 +1144,7 @@ construct_runtime!(
         // InvArch stuff
         Ipf: ipf::{Pallet, Call, Storage, Event<T>} = 70,
         INV4: inv4::{Pallet, Call, Storage, Event<T>} = 71,
+        IpStaking: ip_staking::{Pallet, Call, Storage, Event<T>} = 72,
 
         Uniques: pallet_uniques::{Pallet, Storage, Event<T>} = 80,
         RmrkCore: pallet_rmrk_core::{Pallet, Call, Event<T>, Storage} = 81,
