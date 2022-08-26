@@ -58,6 +58,7 @@ use sp_runtime::{
     },
     transaction_validity::{TransactionSource, TransactionValidity},
     ApplyExtrinsicResult, FixedPointNumber, MultiSignature, Perquintill,
+    curve::PiecewiseLinear
 };
 pub use sp_runtime::{Perbill, Permill};
 use sp_std::{marker::PhantomData, prelude::*};
@@ -65,6 +66,7 @@ use sp_std::{marker::PhantomData, prelude::*};
 use sp_version::NativeVersion;
 use sp_version::RuntimeVersion;
 use xcm_config::{XcmConfig, XcmOriginToTransactDispatchOrigin};
+use pallet_staking::ConvertCurve;
 
 #[cfg(any(feature = "std", test))]
 pub use sp_runtime::BuildStorage;
@@ -1087,17 +1089,38 @@ impl pallet_preimage::Config for Runtime {
     type ByteDeposit = PreimageByteDeposit;
 }
 
+// 
+pallet_staking_reward_curve::build! {
+	const REWARD_CURVE: PiecewiseLinear<'static> = curve!(
+		min_inflation: 0_030_000,
+		max_inflation: 0_100_000,
+		ideal_stake: 0_500_000,
+		falloff: 0_050_000,
+		max_piece_count: 100,
+		test_precision: 0_005_000,
+	);
+}
+
 parameter_types! {
-    pub const IpsRegisterDeposit: Balance = 1000;
+    pub const IpsRegisterDeposit: Balance = currency::UNIT;
     pub const OcifIpStakingPalletId: PalletId = PalletId(*b"ia/ipstk");
+    pub const MinStakingAmount: Balance = currency::UNIT;
+    pub const RewardCurve: &'static PiecewiseLinear<'static> = &REWARD_CURVE;
+    pub const MillisecondsPerEra: u64 = (DAYS as u64) * MILLISECS_PER_BLOCK;
+    pub const BlocksPerEra: u32 = DAYS;
 }
 
 impl ip_staking::Config for Runtime {
     type Event = Event;
     type IpsId = CommonId;
     type Currency = Balances;
+    type Balance = Balance;
+    type EraPayout = ConvertCurve<RewardCurve>;
     type PalletId = OcifIpStakingPalletId;
     type IpsRegisterDeposit = IpsRegisterDeposit;
+    type MinStakingAmount = MinStakingAmount;
+    type MillisecondsPerEra = MillisecondsPerEra;
+    type BlocksPerEra = BlocksPerEra;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
