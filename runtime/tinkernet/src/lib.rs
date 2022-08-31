@@ -1089,7 +1089,7 @@ impl pallet_preimage::Config for Runtime {
     type ByteDeposit = PreimageByteDeposit;
 }
 
-// 
+// REWARD_CURVE is used to calculate inflation
 pallet_staking_reward_curve::build! {
 	const REWARD_CURVE: PiecewiseLinear<'static> = curve!(
 		min_inflation: 0_030_000,
@@ -1107,7 +1107,8 @@ parameter_types! {
     pub const MinStakingAmount: Balance = currency::UNIT;
     pub const RewardCurve: &'static PiecewiseLinear<'static> = &REWARD_CURVE;
     pub const MillisecondsPerEra: u64 = (DAYS as u64) * MILLISECS_PER_BLOCK;
-    pub const BlocksPerEra: u32 = DAYS;
+    pub const BlocksPerEra: u32 = 1;
+    pub const UnbondingPeriod: u32 = 1;
 }
 
 impl ip_staking::Config for Runtime {
@@ -1121,6 +1122,7 @@ impl ip_staking::Config for Runtime {
     type MinStakingAmount = MinStakingAmount;
     type MillisecondsPerEra = MillisecondsPerEra;
     type BlocksPerEra = BlocksPerEra;
+    type UnbondingPeriod = UnbondingPeriod;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
