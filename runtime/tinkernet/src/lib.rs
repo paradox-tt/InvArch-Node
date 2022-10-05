@@ -888,6 +888,7 @@ impl inv4::Config for Runtime {
     type WeightToFee = WeightToFee;
     type MaxSubAssets = MaxCallers;
     type Licenses = InvArchLicenses;
+    type MaxWasmPermissionBytes = MaxCallers;
 }
 
 impl pallet_sudo::Config for Runtime {
@@ -1109,6 +1110,7 @@ parameter_types! {
     pub const MillisecondsPerEra: u64 = (DAYS as u64) * MILLISECS_PER_BLOCK;
     pub const BlocksPerEra: u32 = 1;
     pub const UnbondingPeriod: u32 = 1;
+    pub const MaxStakersPerIps: u32 = 1_000_000;
 }
 
 impl ip_staking::Config for Runtime {
@@ -1123,6 +1125,7 @@ impl ip_staking::Config for Runtime {
     type MillisecondsPerEra = MillisecondsPerEra;
     type BlocksPerEra = BlocksPerEra;
     type UnbondingPeriod = UnbondingPeriod;
+    type MaxStakersPerIps = MaxStakersPerIps;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.

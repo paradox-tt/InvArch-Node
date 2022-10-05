@@ -696,12 +696,12 @@ dependencies = [
  "pallet-authorship",
  "pallet-balances",
  "pallet-collator-selection",
- "pallet-inv4",
- "pallet-ipf",
+ "pallet-inv4 0.1.0-dev (git+https://github.com/InvArch/InvArch-Frames?branch=main)",
+ "pallet-ipf 0.1.0-dev (git+https://github.com/InvArch/InvArch-Frames?branch=main)",
  "pallet-preimage",
  "pallet-randomness-collective-flip",
- "pallet-rmrk-core",
- "pallet-rmrk-equip",
+ "pallet-rmrk-core 0.0.1 (git+https://github.com/rmrk-team/rmrk-substrate?rev=405af2499ca2a9b3f4717eec238fc80dd6abc3f7)",
+ "pallet-rmrk-equip 0.0.1 (git+https://github.com/rmrk-team/rmrk-substrate?rev=405af2499ca2a9b3f4717eec238fc80dd6abc3f7)",
  "pallet-scheduler",
  "pallet-session",
  "pallet-sudo",
@@ -5499,6 +5499,32 @@ dependencies = [
 [[package]]
 name = "pallet-inv4"
 version = "0.1.0-dev"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "invarch-primitives 0.1.0-dev",
+ "pallet-assets",
+ "pallet-balances",
+ "pallet-ipf 0.1.0-dev",
+ "pallet-rmrk-core 0.0.1 (git+https://github.com/Phala-Network/rmrk-substrate?branch=polkadot-v0.9.26)",
+ "pallet-uniques",
+ "parity-scale-codec",
+ "parity-wasm 0.42.2",
+ "rmrk-traits 0.0.1 (git+https://github.com/Phala-Network/rmrk-substrate?branch=polkadot-v0.9.26)",
+ "scale-info",
+ "serde",
+ "smallvec",
+ "sp-arithmetic",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-sandbox",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-inv4"
+version = "0.1.0-dev"
 source = "git+https://github.com/InvArch/InvArch-Frames?branch=main#b70fe4b4f9cc5d007cc8f19f1e56e37a78ce153a"
 dependencies = [
  "frame-support",
@@ -5506,11 +5532,11 @@ dependencies = [
  "invarch-primitives 0.1.0-dev (git+https://github.com/InvArch/InvArch-Frames?branch=main)",
  "pallet-assets",
  "pallet-balances",
- "pallet-ipf",
- "pallet-rmrk-core",
+ "pallet-ipf 0.1.0-dev (git+https://github.com/InvArch/InvArch-Frames?branch=main)",
+ "pallet-rmrk-core 0.0.1 (git+https://github.com/rmrk-team/rmrk-substrate?rev=405af2499ca2a9b3f4717eec238fc80dd6abc3f7)",
  "pallet-uniques",
  "parity-scale-codec",
- "rmrk-traits",
+ "rmrk-traits 0.0.1 (git+https://github.com/rmrk-team/rmrk-substrate?rev=405af2499ca2a9b3f4717eec238fc80dd6abc3f7)",
  "scale-info",
  "serde",
  "smallvec",
@@ -5530,11 +5556,31 @@ dependencies = [
  "frame-system",
  "invarch-primitives 0.1.0-dev",
  "pallet-balances",
- "pallet-inv4",
+ "pallet-inv4 0.1.0-dev",
  "pallet-staking",
  "parity-scale-codec",
  "scale-info",
+ "smallvec",
+ "sp-core",
+ "sp-io",
  "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-ipf"
+version = "0.1.0-dev"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "invarch-primitives 0.1.0-dev",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
 ]
 
 [[package]]
@@ -5758,6 +5804,23 @@ dependencies = [
 [[package]]
 name = "pallet-rmrk-core"
 version = "0.0.1"
+source = "git+https://github.com/Phala-Network/rmrk-substrate?branch=polkadot-v0.9.26#c4a2f7d21c5fafcaddb79b53b1a8cc7c4fb9f045"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "pallet-balances",
+ "pallet-uniques",
+ "parity-scale-codec",
+ "rmrk-traits 0.0.1 (git+https://github.com/Phala-Network/rmrk-substrate?branch=polkadot-v0.9.26)",
+ "scale-info",
+ "serde",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-rmrk-core"
+version = "0.0.1"
 source = "git+https://github.com/rmrk-team/rmrk-substrate?rev=405af2499ca2a9b3f4717eec238fc80dd6abc3f7#405af2499ca2a9b3f4717eec238fc80dd6abc3f7"
 dependencies = [
  "frame-support",
@@ -5765,7 +5828,25 @@ dependencies = [
  "pallet-balances",
  "pallet-uniques",
  "parity-scale-codec",
- "rmrk-traits",
+ "rmrk-traits 0.0.1 (git+https://github.com/rmrk-team/rmrk-substrate?rev=405af2499ca2a9b3f4717eec238fc80dd6abc3f7)",
+ "scale-info",
+ "serde",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-rmrk-equip"
+version = "0.0.1"
+source = "git+https://github.com/Phala-Network/rmrk-substrate?branch=polkadot-v0.9.26#c4a2f7d21c5fafcaddb79b53b1a8cc7c4fb9f045"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "pallet-balances",
+ "pallet-rmrk-core 0.0.1 (git+https://github.com/Phala-Network/rmrk-substrate?branch=polkadot-v0.9.26)",
+ "pallet-uniques",
+ "parity-scale-codec",
+ "rmrk-traits 0.0.1 (git+https://github.com/Phala-Network/rmrk-substrate?branch=polkadot-v0.9.26)",
  "scale-info",
  "serde",
  "sp-runtime",
@@ -5780,10 +5861,10 @@ dependencies = [
  "frame-support",
  "frame-system",
  "pallet-balances",
- "pallet-rmrk-core",
+ "pallet-rmrk-core 0.0.1 (git+https://github.com/rmrk-team/rmrk-substrate?rev=405af2499ca2a9b3f4717eec238fc80dd6abc3f7)",
  "pallet-uniques",
  "parity-scale-codec",
- "rmrk-traits",
+ "rmrk-traits 0.0.1 (git+https://github.com/rmrk-team/rmrk-substrate?rev=405af2499ca2a9b3f4717eec238fc80dd6abc3f7)",
  "scale-info",
  "serde",
  "sp-runtime",
@@ -8060,6 +8141,21 @@ dependencies = [
  "untrusted",
  "web-sys",
  "winapi",
+]
+
+[[package]]
+name = "rmrk-traits"
+version = "0.0.1"
+source = "git+https://github.com/Phala-Network/rmrk-substrate?branch=polkadot-v0.9.26#c4a2f7d21c5fafcaddb79b53b1a8cc7c4fb9f045"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "pallet-balances",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-runtime",
+ "sp-std",
 ]
 
 [[package]]
@@ -10949,13 +11045,13 @@ dependencies = [
  "pallet-authorship",
  "pallet-balances",
  "pallet-collator-selection",
- "pallet-inv4",
+ "pallet-inv4 0.1.0-dev",
  "pallet-ip-staking",
- "pallet-ipf",
+ "pallet-ipf 0.1.0-dev",
  "pallet-preimage",
  "pallet-randomness-collective-flip",
- "pallet-rmrk-core",
- "pallet-rmrk-equip",
+ "pallet-rmrk-core 0.0.1 (git+https://github.com/Phala-Network/rmrk-substrate?branch=polkadot-v0.9.26)",
+ "pallet-rmrk-equip 0.0.1 (git+https://github.com/Phala-Network/rmrk-substrate?branch=polkadot-v0.9.26)",
  "pallet-scheduler",
  "pallet-session",
  "pallet-staking",
@@ -10972,6 +11068,7 @@ dependencies = [
  "parity-scale-codec",
  "polkadot-parachain",
  "polkadot-runtime-common",
+ "rmrk-traits 0.0.1 (git+https://github.com/Phala-Network/rmrk-substrate?branch=polkadot-v0.9.26)",
  "scale-info",
  "serde",
  "smallvec",

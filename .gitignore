@@ -27,3 +27,7 @@ storage
 
 # The cache for local vscode data
 .vscode/
+
+# Intellij
+.idea
+*.iml
