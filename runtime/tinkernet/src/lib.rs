@@ -1111,6 +1111,7 @@ parameter_types! {
     pub const BlocksPerEra: u32 = 1;
     pub const UnbondingPeriod: u32 = 1;
     pub const MaxStakersPerIps: u32 = 1_000_000;
+    pub const MaxUniqueStakes: u8 = 10;
 }
 
 impl ip_staking::Config for Runtime {
@@ -1126,6 +1127,7 @@ impl ip_staking::Config for Runtime {
     type BlocksPerEra = BlocksPerEra;
     type UnbondingPeriod = UnbondingPeriod;
     type MaxStakersPerIps = MaxStakersPerIps;
+    type MaxUniqueStakes = MaxUniqueStakes;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
